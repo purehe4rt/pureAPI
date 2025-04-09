@@ -1,0 +1,8 @@
+name: pureAPI
+version: '${project.version}'
+main: eu.pureheart.api.PureAPI
+
+api-version: '1.16'
+
+author: pureheart_
+description: Библиотека для моих плагинов.

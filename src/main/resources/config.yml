@@ -1,0 +1,3 @@
+menu-settings:
+  empty-material: 'GRAY_STAINED_GLASS_PANE' # ID материала для заполнения пустых слотов.
+  auto-update: true # Включить ли автоматическое обновление меню?
