@@ -16,7 +16,7 @@
 <dependency>
     <groupId>com.github.purehe4rt</groupId>
     <artifactId>pureAPI</artifactId>
-    <version>VESION</version>
+    <version>VERSION</version>
 </dependency>
 ```
 Для Gradle:
