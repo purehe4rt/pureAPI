@@ -15,6 +15,8 @@ public class ActionFactory {
         register("[title]", Title.class);
         register("[broadcast]", Broadcast.class);
         register("[command]", Command.class);
+        register("[player]", Player.class);
+        register("[sound]", Sound.class);
     }
 
     public static void register(String prefix, Class<? extends ActionHandler> handlerClass) {
