@@ -5,7 +5,7 @@
 Внимание! Там где VERSION надо указать версию исходя из названия под Releases(Например: v1.0-SNAPSHOT).
 
 Для Maven:
-
+```
 <repositories>
     <repository>
         <id>jitpack.io</id>
@@ -18,9 +18,9 @@
     <artifactId>pureAPI</artifactId>
     <version>VESION</version>
 </dependency>
-
+```
 Для Gradle:
-
+```
 dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
   repositories {
@@ -32,3 +32,4 @@ dependencyResolutionManagement {
 dependencies {
       implementation 'com.github.purehe4rt:pureAPI:VERSION'
 }
+```
