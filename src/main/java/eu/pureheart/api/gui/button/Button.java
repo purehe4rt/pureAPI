@@ -253,6 +253,7 @@ public class Button {
         this.listener = listener;
         return this;
     }
+
     public void executeListener(InventoryClickEvent event) {
         if (hasListener()) {
             listener.execute(event);

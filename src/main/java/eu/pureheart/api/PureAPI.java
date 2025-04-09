@@ -2,9 +2,7 @@ package eu.pureheart.api;
 
 import eu.pureheart.api.color.BukkitColor;
 import eu.pureheart.api.color.ColorImpl;
-import eu.pureheart.api.gui.menu.MenuListener;
 import eu.pureheart.api.gui.menu.MenuManager;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PureAPI extends JavaPlugin {
@@ -20,8 +18,6 @@ public final class PureAPI extends JavaPlugin {
 
         withColor = new ColorImpl();
         menuManager = new MenuManager();
-
-        Bukkit.getPluginManager().registerEvents(new MenuListener(), this);
     }
 
     public static PureAPI getAPI() {

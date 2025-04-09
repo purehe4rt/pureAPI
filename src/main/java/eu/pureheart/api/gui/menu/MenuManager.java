@@ -29,7 +29,7 @@ public class MenuManager {
             throw new IllegalStateException("[x] Секция 'menu-settings' не найдена в config.yml.");
         }
 
-        Material material = Material.matchMaterial(config.getString("material"));
+        Material material = Material.matchMaterial(config.getString("empty-material"));
         if (material == null) {
             material = Material.GRAY_STAINED_GLASS_PANE;
         }

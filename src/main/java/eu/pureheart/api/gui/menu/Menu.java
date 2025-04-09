@@ -34,7 +34,7 @@ public abstract class Menu {
     protected final boolean updateEnabled;
     protected CloseListener closeListener;
 
-    protected Menu(String title, int rows, Material fillMaterial, boolean updateEnabled) {
+    public Menu(String title, int rows, Material fillMaterial, boolean updateEnabled) {
         this.inventory = Bukkit.createInventory(null, rows * 9, title);
         this.slots = new HashMap<>();
         this.fillMaterial = fillMaterial;
@@ -55,16 +55,17 @@ public abstract class Menu {
         Bukkit.getScheduler().runTask(PureAPI.getAPI(), () -> {
             inventory.clear();
             player.openInventory(inventory);
+            disableInteract(true);
+
             fillInventory(null);
+            disableInteract(false);
         });
     }
 
     private void fillInventory(List<Integer> customSlots) {
-        List<Integer> slotsToFill = (customSlots != null) ? customSlots : getDefaultSlots();
+        List<Integer> slotsToFill = customSlots != null ? customSlots : getDefaultSlots();
 
         for (int slot : slotsToFill) {
-            if (slot < 0 || slot >= inventory.getSize()) continue;
-
             if (slots.containsKey(slot)) {
                 inventory.setItem(slot, slots.get(slot).getItem());
             } else {
@@ -79,7 +80,7 @@ public abstract class Menu {
                 .collect(Collectors.toList());
     }
 
-    public void refreshItems() {
+    public Menu refreshItems() {
         Bukkit.getScheduler().runTask(PureAPI.getAPI(), () -> {
             inventory.clear();
             for (Map.Entry<Integer, Button> entry : slots.entrySet()) {
@@ -89,6 +90,7 @@ public abstract class Menu {
                 ((Player) player).updateInventory();
             }
         });
+        return this;
     }
 
     public Menu refreshSlot(int slot) {
@@ -112,7 +114,6 @@ public abstract class Menu {
                 return entry.getKey();
             }
         }
-
         return -1;
     }
 
@@ -123,18 +124,19 @@ public abstract class Menu {
         return this;
     }
 
-    public Menu removeSlot(int position) {
-        slots.remove(position);
-        inventory.clear(position);
-        return this;
-    }
-
-    public void disableInteract(boolean disable) {
+    public Menu disableInteract(boolean disable) {
         interactDisabled = disable;
+        return this;
     }
 
     public boolean isInteractDisabled() {
         return interactDisabled;
+    }
+
+    public Menu removeSlot(int position) {
+        slots.remove(position);
+        inventory.clear(position);
+        return this;
     }
 
     private void updatePage() {
@@ -234,6 +236,7 @@ public abstract class Menu {
     }
 
     public void stopAutoUpdate() {
+        if (autoUpdateTask == null) return;
         this.autoUpdateTask.cancel();
     }
 }
