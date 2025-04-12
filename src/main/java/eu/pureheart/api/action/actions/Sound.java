@@ -9,10 +9,12 @@ public class Sound implements ActionHandler {
     private final float volume;
     private final float pitch;
 
-    public Sound(String sound, float volume, float pitch) {
-        this.sound = org.bukkit.Sound.valueOf(sound);
-        this.volume = volume;
-        this.pitch = pitch;
+    public Sound(String params) {
+        String[] parts = params.split(";", 3);
+
+        this.sound = org.bukkit.Sound.valueOf(parts[0].toUpperCase());
+        this.volume = parts.length > 1 ? Float.parseFloat(parts[1]) : 1.0f;
+        this.pitch = parts.length > 2 ? Float.parseFloat(parts[2]) : 1.0f;
     }
 
     @Override

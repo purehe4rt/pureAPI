@@ -12,12 +12,14 @@ public class Title implements ActionHandler {
     private final int stay;
     private final int fadeOut;
 
-    public Title(String title, String subtitle, int fadeIn, int stay, int fadeOut) {
-        this.title = PureAPI.getWithColor().hexToMinecraftColor(title);
-        this.subtitle = PureAPI.getWithColor().hexToMinecraftColor(subtitle);
-        this.fadeIn = fadeIn;
-        this.stay = stay;
-        this.fadeOut = fadeOut;
+    public Title(String params) {
+        String[] parts = params.split(";", 5);
+
+        this.title = PureAPI.getWithColor().hexToMinecraftColor(parts[0]);
+        this.subtitle = parts.length > 1 ? PureAPI.getWithColor().hexToMinecraftColor(parts[1]) : "";
+        this.fadeIn = parts.length > 2 ? Integer.parseInt(parts[2]) : 10;
+        this.stay = parts.length > 3 ? Integer.parseInt(parts[3]) : 20;
+        this.fadeOut = parts.length > 4 ? Integer.parseInt(parts[4]) : 10;
     }
 
     @Override
